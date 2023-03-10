@@ -3,9 +3,12 @@ import reactLogo from "./assets/react.svg";
 import reactHookFormLogo from "./assets/react-hook-form.svg";
 import "./App.css";
 import SimpleForm from "./components/SimpleForm";
+import StepperForm from "./components/StepperForm";
 
 
 function App() {
+  const [moduleSelected, setModuleSelected] = useState('simple')
+
   return (
     <div className="App">
       <div>
@@ -18,7 +21,19 @@ function App() {
       </div>
       <h1>Ultimate Form Validation</h1>
       <h2>with React Hook Form and Zod</h2>
-      <SimpleForm></SimpleForm>
+      <div>
+        <select name="select" onChange={(e)=> setModuleSelected(e.target.value)}>
+          <option value="simple">simpleform + validate</option>
+          <option value="stepper">stepper + validate</option>
+        </select>
+      </div>
+      {
+        moduleSelected === 'simple' && <SimpleForm></SimpleForm>
+      }
+      {
+        moduleSelected === 'stepper' && <StepperForm></StepperForm>
+      }
+      
     </div>
   );
 }
